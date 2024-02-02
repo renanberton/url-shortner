@@ -14,8 +14,7 @@ const App = () => {
         setErrorMessage('Por favor, digite uma URL válida.');
         setShortenedUrl('');
       } else {
-        console.log('Backend URL:', process.env.REACT_APP_BACKEND_URL);
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/shorten`, {
+        const response = await axios.post(`https://url-shortner-brasil-back-end.netlify.app/shorten`, {
           originalUrl,
         });
         
