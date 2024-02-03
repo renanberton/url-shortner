@@ -4,7 +4,7 @@
     Access-Control-Allow-Origin = ["*"]
 
 [[redirects]]
-  from = "/*"
-  to = "https://url-shortner-brasil.netlify.app/"
+  from = "/api/*"
+  to = "https://url-shortner-brasil-back-end.netlify.app/shorten"
   status = 200
   force = true
