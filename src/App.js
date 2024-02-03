@@ -7,24 +7,28 @@ const App = () => {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortenedUrl, setShortenedUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
+  const handleError = (error, defaultMessage) => {
+    console.error('Erro:', error);
+    setErrorMessage(defaultMessage);
+    setShortenedUrl('');
+  };
 
   const shortenUrl = async () => {
     try {
-      if (!originalUrl) {
-        setErrorMessage('Por favor, digite uma URL válida.');
-        setShortenedUrl('');
-      } else {
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/shorten`, {
-          originalUrl,
-        });
-        
-        setShortenedUrl(response.data.shortUrl);
-        setErrorMessage('');
-      }
+      setLoading(true);
+      console.log('Enviando requisição para encurtar URL:', originalUrl);
+      const response = await axios.post(`${apiUrl}/shorten`, { originalUrl });
+      console.log('Resposta recebida:', response.data);
+      setShortenedUrl(response.data.shortUrl);
+      setErrorMessage('');
     } catch (error) {
-      console.error('Error shortening URL:', error);
-      setErrorMessage('Ocorreu um erro ao encurtar a URL. Tente novamente.');
-      setShortenedUrl('');
+      handleError(error, 'Ocorreu um erro ao encurtar a URL. Tente novamente.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,8 +49,8 @@ const App = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" className='btn-url-original' onClick={shortenUrl}>
-          Encurtar Link
+        <Button variant="primary" className='btn-url-original' onClick={shortenUrl} disabled={loading}>
+          {loading ? 'Aguarde...' : 'Encurtar Link'}
         </Button>
       </Form>
 
