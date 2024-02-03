@@ -5,6 +5,6 @@
 
 [[redirects]]
   from = "/*"
-  to = "https://url-shortner-brasil-back-end.netlify.app/shorten"
+  to = "https://url-shortner-brasil.netlify.app/"
   status = 200
   force = true
