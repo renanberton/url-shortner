@@ -4,7 +4,13 @@
     Access-Control-Allow-Origin = ["*"]
 
 [[redirects]]
-  from = "https://url-shortner-brasil-back-end.netlify.app/"
-  to = "https://url-shortner-brasil.netlify.app/"
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
   force = true
