@@ -9,13 +9,14 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // URL do backend
-  const apiUrl = 'https://url-shortner-brasil-back-end.netlify.app/.netlify/functions';
+  const apiUrl ='http://localhost:5000';
+  debugger;
 
   const handleError = (error, defaultMessage) => {
     console.error('Erro:', error);
     setErrorMessage(defaultMessage);
     setShortenedUrl('');
+    debugger;
   };
 
   const shortenUrl = async () => {
@@ -24,6 +25,7 @@ const App = () => {
       console.log('Enviando requisição para encurtar URL:', originalUrl);
       const response = await axios.post(`${apiUrl}/shorten`, { originalUrl });
       console.log('Resposta recebida:', response.data);
+      debugger;
       setShortenedUrl(response.data.shortUrl);
       setErrorMessage('');
     } catch (error) {
