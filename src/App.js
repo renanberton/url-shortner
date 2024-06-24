@@ -31,8 +31,6 @@ const App = () => {
       setLoading(false);
     }
   };
-  
-  
 
   return (
     <div className="App">
