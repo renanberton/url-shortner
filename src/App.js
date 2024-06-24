@@ -9,7 +9,8 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const apiUrl = 'https://url-shortner-brasil.netlify.app/.netlify/functions';
+  // URL do backend
+  const apiUrl = 'https://url-shortner-brasil-back-end.netlify.app';
 
   const handleError = (error, defaultMessage) => {
     console.error('Erro:', error);
