@@ -9,7 +9,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+  const apiUrl = 'https://url-shortner-brasil-back-end.netlify.app/.netlify/functions';
 
   const handleError = (error, defaultMessage) => {
     console.error('Erro:', error);
@@ -31,6 +31,8 @@ const App = () => {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="App">
@@ -48,7 +50,7 @@ const App = () => {
             onChange={(e) => setOriginalUrl(e.target.value)}
           />
         </Form.Group>
-
+    
         <Button variant="primary" className='btn-url-original' onClick={shortenUrl} disabled={loading}>
           {loading ? 'Aguarde...' : 'Encurtar Link'}
         </Button>
